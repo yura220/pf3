@@ -1,0 +1,226 @@
+footer {
+  
+}
+
+footer div.wrap {
+  display: grid;
+  grid-template-columns: 33% 1fr 1fr;
+  grid-template-rows: auto auto auto auto 100px;
+  padding-top: 20px;
+  row-gap: 10px;
+  column-gap: 20px;
+  background-color: #fafafa;
+}
+
+footer div.wrap h1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+footer div.wrap h1 a {
+  
+}
+
+footer div.wrap > h1+p { 
+  grid-column: 1;
+  grid-row: 2;
+}
+
+footer div.wrap address {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+footer div.wrap address span {
+  
+}
+
+footer div.wrap address span a {
+  
+}
+
+footer div.wrap address span a::before {
+  content: "";
+  width: 20px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: -3px;
+  background-image: url(img/svg/envelope-solid.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 5px;
+}
+
+footer div.wrap div.sangdam {
+  grid-column: 2;
+  grid-row: 1 / span 4;
+}
+
+footer div.wrap div.sangdam h2 {
+  
+}
+
+footer div.wrap div.sangdam h2::before {
+  content: "";
+  width: 20px;
+  height: 18px;
+  display: inline-block;
+  background-image: url(img/svg/envelope-regular.svg);
+  background-repeat: no-repeat;
+  vertical-align: -4px;
+  margin-right: 5px;
+}
+
+footer div.wrap div.sangdam p {
+  
+}
+
+footer div.wrap div.sangdam form {
+  margin-top: 10px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 60px;
+  grid-template-rows: auto auto auto auto;
+}
+
+footer div.wrap div.sangdam form * {
+  display: block;
+}
+
+footer div.wrap div.sangdam form input {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+footer div.wrap div.sangdam form textarea {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+footer div.wrap div.sangdam form label {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+}
+
+footer div.wrap div.sangdam form label * {
+  display: inline;
+}
+
+footer div.wrap div.sangdam form label input {
+  width: 24px;
+  height: 24px;
+  vertical-align: -5px;
+}
+
+footer div.wrap div.sangdam form label a {
+  text-decoration: underline;
+}
+
+footer div.wrap div.sangdam form input {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+}
+
+footer div.wrap div.sangdam form input[type="email"],
+footer div.wrap div.sangdam form button {
+  display: inline;
+  grid-column: 1 / span 2;
+  grid-row: 4;
+}
+
+footer div.wrap div.sangdam form button {
+  grid-column: 2;
+  grid-row: 4;
+  background-color: #333;
+  border: none;
+}
+
+footer div.wrap div.sangdam form button a {
+  color: #fff;
+}
+
+footer div.wrap div.guide {
+  grid-column: 3;
+  grid-row: 1 / span 4;
+}
+
+footer div.wrap div.guide h2 {
+  
+}
+
+footer div.wrap div.guide ul {
+  
+}
+
+footer div.wrap div.guide ul li {
+  
+}
+
+footer div.wrap div.guide ul li :nth-child(2) {
+  margin: 20px 0;
+}
+
+footer div.wrap div.guide ul li h3 {
+  
+}
+
+footer div.wrap div.guide ul li h3::before {
+  content: "";
+  width: 20px;
+  height: 18px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: -5px;
+  margin-right: 5px;
+}
+
+footer div.wrap div.guide ul li:nth-child(1) h3::before {
+  background-image: url(img/svg/clock-regular.svg);
+}
+
+footer div.wrap div.guide ul li:nth-child(2) h3::before {
+  background-image: url(img/svg/calculator-solid.svg);
+}
+
+footer div.wrap div.guide ul li:nth-child(3) h3::before {
+  background-image: url(img/svg/credit-card-regular.svg);
+}
+
+footer div.wrap div.guide ul li p {
+  
+}
+
+footer div.wrap p.copyright {
+  grid-column: 1 / span 3;
+  grid-row: 5;
+  justify-self: center;
+  /* align-self: center; */
+  width: calc(100vw - 17px);
+  text-align: center;
+  border-top: 1px solid #000;
+  /* margin-left: calc((100vw - 17px - 1170px) / -2); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+footer a.top {
+  width: 40px;
+  height: 40px;
+  background-image: url(img/svg/chevron-up-solid.svg);
+  background-size: 30px, 40px;
+  background-repeat: no-repeat;
+  background-color: #171717;
+  background-position: center;
+  opacity: 0.6;
+  position: fixed;
+  right: 8px;
+  bottom: 10px;
+  font-size: 0;
+}
