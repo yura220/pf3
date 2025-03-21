@@ -1,0 +1,28 @@
+.top{
+    position: fixed;
+    right: 20px;
+    bottom: 40px;
+    text-transform: uppercase;
+    background-color: #525050;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    color: #fff;
+    width: 33px;
+    height: 33px;
+    font-size: 11px !important;
+}
+.top::before{
+    content: "";
+    width: 7px;
+    height: 12px;
+    display: block;
+    background-image: url(../img/svg/arrow_icon.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: rotate(-90deg);
+}
