@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/title.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/top.css">
     <link rel="stylesheet" href="css/hambergur.css">
@@ -33,6 +34,25 @@
                 }
             });
 
+            //메뉴 애니
+            let num; // 변수선언(키워드) 변수명(그릇,폴더명)
+            $("header nav ul.gnb li a").hover(
+                function(){ // mouseenter
+                $(this).addClass("border100");
+                $(this).parent().siblings().children().removeClass("border100");
+
+                // 서브메뉴 배경색 변경
+                num=$(this).parent().index(); //해당요소의 번호를 가져옴
+                console.log(num); //콘솔창에 num의 값을 표시
+                $(".subnavi li.list:not("+num+") .sub").css("background-color","transparent");
+                $(".subnavi li.list:eq("+num+") .sub").css("background-color","#eee");
+                //eq(0)은 :nth-child(1)과 동일
+            },
+
+                function(){
+                $(this).removeClass("border100");
+            });
+
             //서브메뉴 애니
             $(".subnavi").hide();
             $("header nav .wrapgnb").mouseenter(function(){
@@ -40,8 +60,10 @@
             });
             $("header nav .wrapgnb").mouseleave(function(){
                 $(".subnavi").stop().slideUp();
+                $("header nav ul.gnb li a").removeClass("border100");
             });
             
+        
 
         //end
         });
@@ -83,22 +105,22 @@
                 <div class="subnavi">
                     <div class="wrap gray">
                         <ul class="flex submenu">
-                            <li>
-                                <ul>
+                            <li class="list">
+                                <ul class="sub">
                                     <li><a href="#">HB PAPER 소개</a></li>
                                     <li><a href="#">히스토리</a></li>
                                     <li><a href="#">인증서 및 수상내역</a></li>
                                     <li><a href="#">홍보자료</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <ul>
+                            <li class="list">
+                                <ul class="sub">
                                     <li><a href="#">사업분야</a></li>
                                     <li><a href="#">기술 및 설비</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <ul>
+                            <li class="list">
+                                <ul class="sub">
                                     <li><a href="#">종이 봉투</a></li>
                                     <li><a href="#">종이 쇼핑백</a></li>
                                     <li><a href="#">종이 안전 봉투</a></li>
@@ -108,8 +130,8 @@
                                     <li><a href="#">특수지</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <ul>
+                            <li class="list">
+                                <ul class="sub">
                                     <li><a href="#">공지사항</a></li>
                                     <li><a href="#">보도자료</a></li>
                                     <li><a href="#">온라인문의</a></li>
@@ -149,8 +171,34 @@
     </div>
 <!-- 본문 -->
     <main>
-        <section id=""></section>
-        <section id=""></section>
+        <section id="video">
+            <div class="wrap flex-column-center">
+                <h2 class="h5">PROMOTION VIDEO</h2>
+                <p class="h3">HB PAPER 기업 소개 영상을 확인해보세요.</p>
+                <iframe width="1262" height="510" src="https://www.youtube.com/embed/9HyfO_V5cLw" title="자연으로 스마트하게, HB PAPER 기업 소개 영상" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+        <section id="business">
+            <div class="wrap flex-column">
+                <h2 class="h5">BUSINESS AREA</h2>
+                <p class="h3">PFAS Free, Repulpable, Compostable의 가치는<span class="block"></span>
+                    우리 HB PAPER가 나아가고자 하는 사업방향입니다. </p>
+                <ul class="flex">
+                    <li>
+                        <a href="" class="block">
+                            <h3 class="h4">종이가공</h3>
+                            <p class="p">식품포장 · 테이크아웃 · 이커머스</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block">
+                            <h3 class="h4">특수지</h3>
+                            <p class="p">친환경 코팅 · 친환경 인쇄</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
         <section id=""></section>
         <section id=""></section>
     </main>
