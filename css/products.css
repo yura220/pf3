@@ -1,0 +1,69 @@
+#products {
+}
+#products .wrap {
+  height: 100vh;
+  max-width: 100%;
+  margin: 0;
+  position: relative;
+}
+#products .slick-list{height: 100%;width: 100%;}
+#products .slick-track{height: 100%;}
+#products .slick-track::before{}
+#products .wrap article.pani {
+  
+  height: 100vh;
+  background-size: cover;
+  /*! /*! margin: 0 calc((1903px - 1520px) / -2); */ 
+  padding: 0 calc((100vw - 1520px - 17px) / 2);
+  background-position: center;
+}
+#products .wrap article.pani0{background-image: url(../img/ms3_02.jpg);}
+#products .wrap article.pani1{background-image: url(../img/ms3_03.jpg);}
+#products .wrap article.pani2{background-image: url(../img/ms3_04.jpg);}
+#products .wrap article.pani3{background-image: url(../img/ms3_05.jpg);}
+#products .wrap article.pani4{background-image: url(../img/ms3_06.jpg);}
+#products .wrap article.pani5{background-image: url(../img/ms3_07.jpg);}
+#products .wrap article.pani6{background-image: url(../img/ms3_07.jpg);}
+#products .wrap article.pani h2.h5 {
+  
+  color: #0e9447;
+}
+#products .wrap article.pani h3.h3 {
+  
+}
+#products .wrap article.pani p.p {
+  
+}
+#products .wrap article.pani a.block {
+  
+}
+/* 도트 */
+#products .slick-dots{
+  width: fit-content;
+  left: calc((100vw - 1520px - 17px) / 2);
+  bottom: 100px;
+}
+#products .wrap .slick-dots li{
+    font-size: 12px;
+    color: initial;
+    width: fit-content;
+}
+#products .wrap .slick-dots button{
+    font-size: 16px;
+    color: initial;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 45px;
+    font-weight: 700;
+}
+#products .wrap .slick-dots button::before{
+    position: static;
+}
+#products .slick-dots li button::before{
+  color: black;
+  font-size: 12px;
+  line-height: 25px;
+  height: 80px;
+}

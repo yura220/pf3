@@ -1,0 +1,70 @@
+/* video섹션 */
+#video {
+}
+
+#video .wrap {
+  height: 100%;
+}
+
+#video h2.h5 {
+  color: #0e9447;
+}
+
+#video p.h3 {
+  transform: translateY(-20px);
+}
+
+#video iframe {
+}
+
+/* business섹션 */
+#business {
+}
+#business div.wrap {
+  height: 100%;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+}
+#business h2.h5 {
+  color: #0e9447;
+}
+#business p.h3 {
+  transform: translateY(-20px);
+}
+#business span.block {
+}
+#business ul.flex {
+  justify-content: space-between;
+  width: 100%;
+}
+#business ul.flex li {
+}
+#business ul.flex li:nth-child(2){
+  
+  /*! transform: translateY(-20px); */
+}
+#business a.block {
+  text-align: center;
+}
+#business li a.block::before{
+  content:"";
+  display: block;
+  width: 730px;
+  height: 335px;
+  /*! margin: 0 20px; */
+  border-radius: 20px;
+  background-size: contain;
+  background-position: center;
+}
+#business li:nth-child(1) a.block::before{
+  background-image: url(../img/main_01.jpg);
+}
+#business li:nth-child(2) a.block::before{
+ background-image: url(../img/main_02.jpg);
+}
+#business h3.h4 {
+  margin-top: 20px;
+}
+#business p.p {
+}
