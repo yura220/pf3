@@ -24,8 +24,9 @@ section{
   justify-content: space-between;
 }
 .flex-column{
-  display: flex;
+  display: flex !important;
   flex-direction: column;
+  justify-content: center;
 }
 .flex-column-center{
   display: flex !important;
