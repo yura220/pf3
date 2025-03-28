@@ -13,61 +13,14 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/title.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/products.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/top.css">
     <link rel="stylesheet" href="css/hambergur.css">
     <link rel="stylesheet" href="css/responsive.css">
     <script src="js/jquery-3.7.1.js"></script>
     <!-- <script src="js/header.js"></script> -->
-    <script>
-        $(document).ready(function(){
-            $("header").addClass("headerDown");
 
-            $(".collapse").click(function(){
-                $("header").toggleClass("headerDown");
-                $(this).toggleClass("turn");
-            // 현재 버튼 텍스트가 "닫기"인지 확인 후 변경
-            if ($(this).text() == "닫기") {
-                $(this).text("열기");
-                } else {
-                $(this).text("닫기");
-                }
-            });
-
-            //메뉴 애니
-            let num; // 변수선언(키워드) 변수명(그릇,폴더명)
-            $("header nav ul.gnb li a").hover(
-                function(){ // mouseenter
-                $(this).addClass("border100");
-                $(this).parent().siblings().children().removeClass("border100");
-
-                // 서브메뉴 배경색 변경
-                num=$(this).parent().index(); //해당요소의 번호를 가져옴
-                console.log(num); //콘솔창에 num의 값을 표시
-                $(".subnavi li.list:not("+num+") .sub").css("background-color","transparent");
-                $(".subnavi li.list:eq("+num+") .sub").css("background-color","#eee");
-                //eq(0)은 :nth-child(1)과 동일
-            },
-
-                function(){
-                $(this).removeClass("border100");
-            });
-
-            //서브메뉴 애니
-            $(".subnavi").hide();
-            $("header nav .wrapgnb").mouseenter(function(){
-                $(".subnavi").stop().slideDown();
-            });
-            $("header nav .wrapgnb").mouseleave(function(){
-                $(".subnavi").stop().slideUp();
-                $("header nav ul.gnb li a").removeClass("border100");
-            });
-            
-        
-
-        //end
-        });
-    </script>
 
     <!-- 타이틀 slick.js -->
     <link rel="stylesheet" type="text/css" href="js/slick/slick.css"/>
@@ -86,9 +39,147 @@
                 fade: true, //서서히 보여지는
                 cssEase: 'linear' //가속도
             });
+
+            $('.productsAni').slick({
+                autoplay:true,
+                arrows:false,
+                dots: true,
+                infinite: true,
+                speed: 1500,
+                fade: true,
+                cssEase: 'linear'
+            });
         });
     </script>
+    <script>
+        $(document).ready(function(){
 
+//대메뉴 한영 전환 효과 ------------------------------------------------------------
+            //const eng=["company","business","product","customer"];
+            const kor=["회사소개","사업소개","제품소개","고객센터"];
+            const eng = kor.map(menu => {
+                const translations = {
+                    '회사소개': 'company',
+                    '사업소개': 'business',
+                    '제품소개': 'product',
+                    '고객센터': 'Constact'
+                };
+                return translations[menu] || 'Unknown'; // 대응되는 값이 없으면 'Unknown' 반환  ||논리연산자 or
+            });
+
+            $("header nav>a").wrapInner("<strong></strong>");
+            $("header nav>a strong").text("ENG");
+            $("header nav>a").prepend('<ion-icon class="lang_icon" name="globe-outline"></ion-icon>');
+            $("header nav>a").append('<ion-icon class="smdown_icon" name="caret-down-outline"></ion-icon>');
+
+            console.log(eng.length);
+            let n=0;
+            $("header nav>a").click(function() {
+                if(n==0){
+                    for( let i=0; i<eng.length; i++ ) {
+                        $(`.gnb li:eq(${i}) a`).text(eng[i]); // = $(".gnb li:eq("+i+") a").text(eng[i]);
+                    }
+                    $(this).children().text("KOR")
+                    n=1;
+                    return false;
+                } else{
+                    for( let i=0; i<kor.length; i++ ) {
+                    $(`.gnb li:eq(${i}) a`).text(kor[i]);
+                    }
+                    $(this).children().text("ENG")
+                    n=0;
+                    return false;
+                }
+            });
+//kor오버 애니 ------------------------------------------------------------------
+            // $('.lang').after('<ul class="langlist menu"><li><a href="" class="block">kor</a></li><li><a href="" class="block">eng</a></li></ul>');
+            // $('.lang,header .langlist').wrapAll('<div class="wlang"></div>');
+            // $('header .langlist').addClass('langlistUp');
+            // $('header .langlist').hide();
+            // $('header nav .wlang a.lang').hover(function(){
+            //     $('header .langlist').show();
+            // });
+            // $('.wlang').mouseleave(function(){
+            //     $('header .langlist').hide();
+            // });
+            $('header nav a.lang').one('mouseenter',function(){
+                $('.lang').after('<ul class="langlist menu"><li><a href="" class="block">kor</a></li><li><a href="" class="block">eng</a></li></ul>');
+                $('.lang, header .langlist').wrapAll('<div class="wlang"></div>');
+                $('header .langlist').mouseleave(function(){
+                    $('header .langlist').removeClass('langlistUp');
+                });
+                
+            });
+            
+            $('header nav a.lang').mouseenter(function(){
+                //$('header .langlist').addClass('langlistUp');
+                $('header .langlist').fadeIn(1,function(){
+                    $(this).addClass('langlistUp');
+                });
+            });
+            
+//헤더 다운 토글 버튼 -------------------------------------------------------------
+            $("header").addClass("headerDown");
+
+            $(".collapse").click(function(){
+                $("header").toggleClass("headerDown");
+                $(this).toggleClass("turn");
+            // 현재 버튼 텍스트가 "닫기"인지 확인 후 변경
+            if ($(this).text() == "닫기") {
+                $(this).text("열기");
+                } else {
+                $(this).text("닫기");
+                }
+            });
+//대메뉴 애니 ---------------------------------------------------------------------
+            let num; // 변수선언(키워드) 변수명(그릇,폴더명)
+            $("header nav ul.gnb li a").hover(
+                function(){ // mouseenter
+                $(this).addClass("border100");
+                $(this).parent().siblings().children().removeClass("border100");
+
+                // 서브메뉴 배경색 변경
+                num=$(this).parent().index(); //해당요소의 번호를 가져옴
+                console.log(num); //콘솔창에 num의 값을 표시
+                $(".subnavi li.list:not("+num+") .sub").css("background-color","transparent");
+                $(".subnavi li.list:eq("+num+") .sub").css("background-color","#eee");
+                //eq(0)은 :nth-child(1)과 동일
+                $(".subnavi li.list .sub").css("height","100%"); //배경 길게
+            },
+
+                function(){
+                $(this).removeClass("border100");
+            });
+//서브메뉴 애니 -------------------------------------------------------------------
+            $(".subnavi").hide();
+            $("header nav .wrapgnb").mouseenter(function(){
+                $(".subnavi").stop().slideDown();
+            });
+            $("header nav .wrapgnb").mouseleave(function(){
+                $(".subnavi").stop().slideUp();
+                $("header nav ul.gnb li a").removeClass("border100");
+            });
+            
+//products 도트 글자입력 애니 -----------------------------------------------------
+            const plist = ["종이 봉투","종이 쇼핑백","종이 안전 봉투","종이 식품 용기","종이 테이프","종이 완충재","특수지"];
+            for(let i=0; i<plist.length; i++){
+                $(`#products .slick-dots li:eq(${i}) button`).text(plist[i]);
+            }
+            
+
+        //end
+        });
+    </script>
+    <style>
+        footer img {
+            border-radius: 50%;
+        }
+        .borderR{
+            border-radius: 20%;
+        }
+    </style>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
 <!-- 헤더 -->
@@ -142,7 +233,7 @@
                     </div>
                 </div>
             </div>
-            <a href="" class="block">KOR</a>
+            <a href="" class="block lang">KOR</a>
         </nav>
         <button class="collapse" type="button">닫기</button>
     </header>
@@ -199,12 +290,159 @@
                 </ul>
             </div>
         </section>
-        <section id=""></section>
-        <section id=""></section>
+        <section id="products">
+            <div class="wrap productsAni">
+                <article class="pani pani0 flex-column">
+                    <h2 class="h5">PRODUCTS</h2>
+                    <h3 class="h3">종이 봉투</h3>
+                    <p class="p">각대봉투, 새철봉투, 창봉투 등 고객의 요구사항에 맞는<span class="block"></span>
+                        다양한 종이봉투의 제작이 가능하며, 고품질의 크라프트 종이를<span class="block"></span>
+                        사용하여 강도가 우수합니다.</p>
+                    <a href="" class="block h5">MORE VIEW</a>
+                </article>
+                <article class="pani pani1 flex-column">
+                    <h2 class="h5">PRODUCTS</h2>
+                    <h3 class="h3">종이 쇼핑백</h3>
+                    <p class="p">고품질의 크라프트 종이로 직접 생산하여 품질이 뛰어나고,<span class="block"></span>
+                        자체 보유한 최고급 인쇄기와 친환경 수성 잉크를 사용하여<span class="block"></span>
+                        고해상도 · 고품질의 인쇄가 가능합니다. </p>
+                    <a href="" class="block h5">MORE VIEW</a>
+                </article>
+                <article class="pani pani2 flex-column">
+                    <h2 class="h5">PRODUCTS</h2>
+                    <h3 class="h3">종이 안전 봉투</h3>
+                        <p class="p">친환경 종이로 만든 허니콤 완충재를 적용한 브라운 메일러는<span class="block"></span>
+                        기존 플라스틱 에어캡을 대체하여 제품을 안전하게 보호하고,<span class="block"></span>
+                        친환경 수성 잉크를 사용한 고품질의 인쇄가 가능합니다. </p>
+                    <a href="" class="block h5">MORE VIEW</a>
+                </article>
+                <article class="pani pani3 flex-column">
+                    <h2 class="h5">PRODUCTS</h2>
+                    <h3 class="h3">종이 식품 용기</h3>
+                    <p class="p">자체개발한 PFAS free 소재의 수용성 코팅을 적용한<span class="block"></span>
+                        다양한 형태의 종이식품용기는 코팅 마감에 균열이 없어<span class="block"></span>
+                        어떠한 식품도 안전하게 포장할 수 있습니다. </p>
+                    <a href="" class="block h5">MORE VIEW</a>
+                </article>
+                <article class="pani pani4 flex-column">
+                    <h2 class="h5">PRODUCTS</h2>
+                    <h3 class="h3">종이 테이프</h3>
+                    <p class="p">천연 성분으로 만들어 인체에 무해하고<span class="block"></span>
+                        믿을 수 있는 품질의 종이 테이프는<span class="block"></span>
+                        편리하게 사용할 수 있으며 강한 접착력을 자랑합니다. </p>
+                    <a href="" class="block h5">MORE VIEW</a>
+                </article>
+                <article class="pani pani5 flex-column">
+                    <h2 class="h5">PRODUCTS</h2>
+                    <h3 class="h3">종이 완충재</h3>
+                    <p class="p">기존 플라스틱 에어캡을 대체하는<span class="block"></span>
+                        뛰어난 완충력의 친환경 종이 완충재로,<span class="block"></span>
+                        상품의 가치를 더해주고 깨지기 쉬운<span class="block"></span>
+                        다양한 제품을 보호해줍니다. </p>
+                    <a href="" class="block h5">MORE VIEW</a>
+                </article>
+                <article class="pani pani6 flex-column">
+                    <h2 class="h5">PRODUCTS</h2>
+                    <h3 class="h3">특수지</h3>
+                    <p class="p">자체개발한 수용성 코팅을 적용한 친환경 종이 코팅지로,<span class="block"></span>
+                        종이의 재활용과 Repulp가 가능하며, FDA 기준에 부합하여<span class="block"></span>
+                        음식물이 닿아도 인체에 무해합니다. </p>
+                    <a href="" class="block h5">MORE VIEW</a>
+                </article>
+            </div>
+        </section>
+        <section id="news">
+            <div class="wrap grid">
+                <h2 class="sm">NEWS & NOTICE</h2>
+                <h3 class="h3">HB PAPER의<span class="block"></span>
+                새로운 순간들 </h3>
+                <p class="sm">HB PAPER의 다양한 소식들을 확인해보세요. </p>
+                <ul>
+                    <li>
+                        <a href="" class="p block">
+                            <p class="p">
+                                <strong>공지사항</strong>2024 TOKYO PACK HB PAPER 부스에 방문해주셔서 감사인사 드립니다.
+                            </p>
+                            <time datetime="">2024-10-31</time>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="p block">
+                            <p class="p">
+                                <strong>공지사항</strong>HB PAPER가 TOKYO PACK 2024에 참가합니다!
+                            </p>
+                            <time datetime="">2024-10-17</time>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="p block">
+                            <p class="p">
+                                <strong>보도자료</strong>미주 한인회총연합회, HB페이퍼(주)와 업무협약 체결
+                            </p>
+                            <time datetime="">2024-06-25</time>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="p block">
+                            <p class="p">
+                                <strong>공지사항</strong>HB PAPER가 벤처기업 인증을 획득하였습니다.
+                            </p>
+                            <time datetime="">2024-06-10</time>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="p block">
+                            <p class="p">
+                                <strong>공지사항</strong>2024 TOKYO PACK HB PAPER 부스에 방문해주셔서 감사인사 드립니다.
+                            </p>
+                            <!-- <time datetime="">2024-10-31</time> -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="p block">
+                            <p class="p">
+                                <strong>공지사항</strong>2024 TOKYO PACK HB PAPER 부스에 방문해주셔서 감사인사 드립니다.
+                            </p>
+                            <!-- <time datetime="">2024-10-31</time> -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="p block">
+                            <p class="p">
+                                <strong>공지사항</strong>2024 TOKYO PACK HB PAPER 부스에 방문해주셔서 감사인사 드립니다.
+                            </p>
+                            <!-- <time datetime="">2024-10-31</time> -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="p block">
+                            <p class="p">
+                                <strong>공지사항</strong>2024 TOKYO PACK HB PAPER 부스에 방문해주셔서 감사인사 드립니다.
+                            </p>
+                            <!-- <time datetime="">2024-10-31</time> -->
+                        </a>
+                    </li>
+                </ul>
+                <a href="" class="more block"></a>
+            </div>
+        </section>
     </main>
 <!-- 푸터 -->
     <footer>
-        
+        <img src="https://images.unsplash.com/photo-1632047096430-9ae3a7a80836?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHBhcGVyJTIwY29tcGFueXxlbnwwfHwwfHx8Mg%3D%3D" alt="">
     </footer>
+    <script>
+        /*
+        $('footer img').hide().fadeIn(500,function(){
+        $(this).addClass('borderR');
+        });
+        */
+        $('footer img').hide().fadeIn(500,function(){
+            $(this).css("transition","1s");
+        });
+        $('footer img').hover(function(){
+            $(this).addClass("borderR");
+        });
+    </script>
 </body>
 </html>
