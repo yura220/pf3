@@ -16,7 +16,7 @@ header {
 header:hover {background-color: white;}
 header nav {
     display: grid !important;
-    grid-template-columns: 200px 1fr 60px;
+    grid-template-columns: 200px 1fr 80px;
     height: 60px;
     align-items: center;
 }
@@ -75,18 +75,73 @@ header nav ul.gnb li a::after{
 .border100::after{
     width: 100% !important;;
 }
-header nav > a {
+header nav a.lang {
     text-decoration: none;
     font-size: 16px;
-    color: #333;
+    color: #fff;
     font-weight: bold;
     justify-self: end;
+    display: flex !important;
+    align-items: center;
+    padding: 10px 0;
 }
-header:hover nav > a{
+header nav a.lang{justify-content: center;width: 80px;}
+header nav a.lang strong{
+    vertical-align: 2px;
+    margin-left: 3px;
+    line-height: 1;
+}
+header:hover nav strong{
     color: #000;
 }
-header nav > a:hover {
-    /*! color: #0a3e82; */
+header nav .wlang a:hover {
+}
+header:hover ion-icon{color: #000;}
+header .wlang{
+    position: relative;
+}
+header .wlang .langlist{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px 4px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    top: 35px;
+    opacity: 0;
+    box-sizing: border-box;
+}
+.langlistUp{
+    opacity: 1 !important;
+    top: 30px !important; 
+/*     animation-name: up; */
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+@keyframes up{
+    to{
+       top: 30px; 
+       opacity: 1;
+    }
+}
+.langlistDown{
+    animation-name: down;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+@keyframes down{
+    to{
+       top: 30px; 
+       opacity: 0;
+    }
+}
+header .wlang .langlist li{}
+header .wlang .langlist li a{
+    color: black;
 }
 header button.collapse{
     position: absolute;
@@ -154,4 +209,9 @@ header div.subnavi .wrap ul.flex li a{
     padding-left: 7px;
     line-height: 2;
     color: #202020;
+}
+.smdown_icon{
+    font-size: 12px;
+    margin-left: 2px;
+    padding-top: 3px;
 }
