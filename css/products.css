@@ -65,6 +65,17 @@
   transition: transform 0.8s ease, opacity 0.4s;
   transition-delay: 0.5s;
 }
+#products .wrap article.pani a.block::after{
+  content:"";
+  background-image: url(../img/more_arrow.png);
+  display: inline-block;
+  width: 20px;
+  height: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: 10px;
+  background-size: contain;
+}
 #products .wrap article.slick-active a.block {
   opacity: 1;
   transform: translateY(0px);

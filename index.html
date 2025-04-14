@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,25 +15,35 @@
     <link rel="stylesheet" href="css/title.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="css/news.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/top.css">
     <link rel="stylesheet" href="css/hambergur.css">
     <link rel="stylesheet" href="css/responsive.css">
     <script src="js/jquery-3.7.1.js"></script>
     <!-- <script src="js/header.js"></script> -->
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 
     <!-- 타이틀 slick.js -->
-    <link rel="stylesheet" type="text/css" href="js/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="js/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="js/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="js/slick/slick-theme.css" />
     <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="js/slick/slick.min.js"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
+            AOS.init();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
             $('.titleSlick').slick({
-                autoplay:true, //자동넘김
-                arrows:true, //버튼 없애기
+                autoplay: true, //자동넘김
+                arrows: true, //버튼 없애기
                 dots: true, //도트표시
                 infinite: true, //무한 반복
                 speed: 500, //넘어가는 속도
@@ -41,8 +52,8 @@
             });
 
             $('.productsAni').slick({
-                autoplay:true,
-                arrows:false,
+                autoplay: true,
+                arrows: false,
                 dots: true,
                 infinite: true,
                 speed: 1500,
@@ -52,11 +63,11 @@
         });
     </script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
 
-//대메뉴 한영 전환 효과 ------------------------------------------------------------
+            //대메뉴 한영 전환 효과 ------------------------------------------------------------
             //const eng=["company","business","product","customer"];
-            const kor=["회사소개","사업소개","제품소개","고객센터"];
+            const kor = ["회사소개", "사업소개", "제품소개", "고객센터"];
             const eng = kor.map(menu => {
                 const translations = {
                     '회사소개': 'company',
@@ -73,25 +84,25 @@
             $("header nav>a").append('<ion-icon class="smdown_icon" name="caret-down-outline"></ion-icon>');
 
             console.log(eng.length);
-            let n=0;
-            $("header nav>a").click(function() {
-                if(n==0){
-                    for( let i=0; i<eng.length; i++ ) {
+            let n = 0;
+            $("header nav>a").click(function () {
+                if (n == 0) {
+                    for (let i = 0; i < eng.length; i++) {
                         $(`.gnb li:eq(${i}) a`).text(eng[i]); // = $(".gnb li:eq("+i+") a").text(eng[i]);
                     }
                     $(this).children().text("KOR")
-                    n=1;
+                    n = 1;
                     return false;
-                } else{
-                    for( let i=0; i<kor.length; i++ ) {
-                    $(`.gnb li:eq(${i}) a`).text(kor[i]);
+                } else {
+                    for (let i = 0; i < kor.length; i++) {
+                        $(`.gnb li:eq(${i}) a`).text(kor[i]);
                     }
                     $(this).children().text("ENG")
-                    n=0;
+                    n = 0;
                     return false;
                 }
             });
-//kor오버 애니 ------------------------------------------------------------------
+            //kor오버 애니 ------------------------------------------------------------------
             // $('.lang').after('<ul class="langlist menu"><li><a href="" class="block">kor</a></li><li><a href="" class="block">eng</a></li></ul>');
             // $('.lang,header .langlist').wrapAll('<div class="wlang"></div>');
             // $('header .langlist').addClass('langlistUp');
@@ -102,87 +113,103 @@
             // $('.wlang').mouseleave(function(){
             //     $('header .langlist').hide();
             // });
-            $('header nav a.lang').one('mouseenter',function(){
+            $('header nav a.lang').one('mouseenter', function () {
                 $('.lang').after('<ul class="langlist menu"><li><a href="" class="block">kor</a></li><li><a href="" class="block">eng</a></li></ul>');
                 $('.lang, header .langlist').wrapAll('<div class="wlang"></div>');
-                $('header .langlist').mouseleave(function(){
+                $('header .langlist').mouseleave(function () {
                     $('header .langlist').removeClass('langlistUp');
                 });
-                
+
             });
-            
-            $('header nav a.lang').mouseenter(function(){
+
+            $('header nav a.lang').mouseenter(function () {
                 //$('header .langlist').addClass('langlistUp');
-                $('header .langlist').fadeIn(1,function(){
+                $('header .langlist').fadeIn(1, function () {
                     $(this).addClass('langlistUp');
                 });
             });
-            
-//헤더 다운 토글 버튼 -------------------------------------------------------------
-            $("header").addClass("headerDown");
 
-            $(".collapse").click(function(){
+            //페이지 열리면 헤더 다운 --------------------------------------------------------------
+            function sayHello() { }
+            $("header").addClass("headerDown");
+            $(".collapse").click(function () {
                 $("header").toggleClass("headerDown");
                 $(this).toggleClass("turn");
-            // 현재 버튼 텍스트가 "닫기"인지 확인 후 변경
-            if ($(this).text() == "닫기") {
-                $(this).text("열기");
+                // 현재 버튼 텍스트가 "닫기"인지 확인 후 변경
+                if ($(this).text() == "닫기") {
+                    $(this).text("열기");
                 } else {
-                $(this).text("닫기");
+                    $(this).text("닫기");
                 }
             });
-//대메뉴 애니 ---------------------------------------------------------------------
+            //헤더 다운 토글 버튼 -------------------------------------------------------------
+            $("header").addClass("headerDown");
+
+            $(".collapse").click(function () {
+                $("header").toggleClass("headerDown");
+                $(this).toggleClass("turn");
+                // 현재 버튼 텍스트가 "닫기"인지 확인 후 변경
+                if ($(this).text() == "닫기") {
+                    $(this).text("열기");
+                } else {
+                    $(this).text("닫기");
+                }
+            });
+            //대메뉴 애니 ---------------------------------------------------------------------
             let num; // 변수선언(키워드) 변수명(그릇,폴더명)
             $("header nav ul.gnb li a").hover(
-                function(){ // mouseenter
-                $(this).addClass("border100");
-                $(this).parent().siblings().children().removeClass("border100");
+                function () { // mouseenter
+                    $(this).addClass("border100");
+                    $(this).parent().siblings().children().removeClass("border100");
 
-                // 서브메뉴 배경색 변경
-                num=$(this).parent().index(); //해당요소의 번호를 가져옴
-                console.log(num); //콘솔창에 num의 값을 표시
-                $(".subnavi li.list:not("+num+") .sub").css("background-color","transparent");
-                $(".subnavi li.list:eq("+num+") .sub").css("background-color","#eee");
-                //eq(0)은 :nth-child(1)과 동일
-                $(".subnavi li.list .sub").css("height","100%"); //배경 길게
-            },
+                    // 서브메뉴 배경색 변경
+                    num = $(this).parent().index(); //해당요소의 번호를 가져옴
+                    console.log(num); //콘솔창에 num의 값을 표시
+                    $(".subnavi li.list:not(" + num + ") .sub").css("background-color", "transparent");
+                    $(".subnavi li.list:eq(" + num + ") .sub").css("background-color", "#eee");
+                    //eq(0)은 :nth-child(1)과 동일
+                    $(".subnavi li.list .sub").css("height", "100%"); //배경 길게
+                },
 
-                function(){
-                $(this).removeClass("border100");
-            });
-//서브메뉴 애니 -------------------------------------------------------------------
+                function () {
+                    $(this).removeClass("border100");
+                });
+            //서브메뉴 애니 -------------------------------------------------------------------
             $(".subnavi").hide();
-            $("header nav .wrapgnb").mouseenter(function(){
+            $("header nav .wrapgnb").mouseenter(function () {
                 $(".subnavi").stop().slideDown();
             });
-            $("header nav .wrapgnb").mouseleave(function(){
+            $("header nav .wrapgnb").mouseleave(function () {
                 $(".subnavi").stop().slideUp();
                 $("header nav ul.gnb li a").removeClass("border100");
             });
-            
-//products 도트 글자입력 애니 -----------------------------------------------------
-            const plist = ["종이 봉투","종이 쇼핑백","종이 안전 봉투","종이 식품 용기","종이 테이프","종이 완충재","특수지"];
-            for(let i=0; i<plist.length; i++){
+
+            //products 도트 글자입력 애니 -----------------------------------------------------
+            const plist = ["종이 봉투", "종이 쇼핑백", "종이 안전 봉투", "종이 식품 용기", "종이 테이프", "종이 완충재", "특수지"];
+            for (let i = 0; i < plist.length; i++) {
                 $(`#products .slick-dots li:eq(${i}) button`).text(plist[i]);
             }
-            
 
-        //end
+            //end----------------------------------------------------------------------------
+
+
         });
     </script>
     <style>
         footer img {
             border-radius: 50%;
         }
-        .borderR{
+
+        .borderR {
             border-radius: 20%;
         }
     </style>
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
+
 <body>
-<!-- 헤더 -->
+    <!-- 헤더 -->
     <header>
         <nav class="flex wrap white">
             <h1><a href="" class="block">HB PAPER</a></h1>
@@ -237,7 +264,7 @@
         </nav>
         <button class="collapse" type="button">닫기</button>
     </header>
-<!-- 타이틀 -->
+    <!-- 타이틀 -->
     <div id="title">
         <div>
             <ul class="titleSlick">
@@ -260,13 +287,16 @@
             </ul>
         </div>
     </div>
-<!-- 본문 -->
+    <!-- 본문 -->
     <main>
         <section id="video">
             <div class="wrap flex-column-center">
-                <h2 class="h5">PROMOTION VIDEO</h2>
-                <p class="h3">HB PAPER 기업 소개 영상을 확인해보세요.</p>
-                <iframe width="1262" height="510" src="https://www.youtube.com/embed/9HyfO_V5cLw" title="자연으로 스마트하게, HB PAPER 기업 소개 영상" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <h2 data-aos="fade-down" data-aos-offset="80" data-aos-duration="1000" class="h5">PROMOTION VIDEO</h2>
+                <p data-aos="fade-down" data-aos-offset="80" class="h3">HB PAPER 기업 소개 영상을 확인해보세요.</p>
+                <iframe data-aos="zoom-in" width="1262" height="510" src="https://www.youtube.com/embed/9HyfO_V5cLw"
+                    title="자연으로 스마트하게, HB PAPER 기업 소개 영상" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </section>
         <section id="business">
@@ -311,7 +341,7 @@
                 <article class="pani pani2 flex-column">
                     <h2 class="h5">PRODUCTS</h2>
                     <h3 class="h3">종이 안전 봉투</h3>
-                        <p class="p">친환경 종이로 만든 허니콤 완충재를 적용한 브라운 메일러는<span class="block"></span>
+                    <p class="p">친환경 종이로 만든 허니콤 완충재를 적용한 브라운 메일러는<span class="block"></span>
                         기존 플라스틱 에어캡을 대체하여 제품을 안전하게 보호하고,<span class="block"></span>
                         친환경 수성 잉크를 사용한 고품질의 인쇄가 가능합니다. </p>
                     <a href="" class="block h5">MORE VIEW</a>
@@ -353,9 +383,9 @@
         </section>
         <section id="news">
             <div class="wrap grid">
-                <h2 class="sm">NEWS & NOTICE</h2>
+                <h2 class="h5">NEWS & NOTICE</h2>
                 <h3 class="h3">HB PAPER의<span class="block"></span>
-                새로운 순간들 </h3>
+                    새로운 순간들 </h3>
                 <p class="sm">HB PAPER의 다양한 소식들을 확인해보세요. </p>
                 <ul>
                     <li>
@@ -423,13 +453,14 @@
                         </a>
                     </li>
                 </ul>
-                <a href="" class="more block"></a>
+                <a href="" class="more block h5">MORE VIEW</a>
             </div>
         </section>
     </main>
-<!-- 푸터 -->
+    <!-- 푸터 -->
     <footer>
-        <img src="https://images.unsplash.com/photo-1632047096430-9ae3a7a80836?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHBhcGVyJTIwY29tcGFueXxlbnwwfHwwfHx8Mg%3D%3D" alt="">
+        <img src="https://images.unsplash.com/photo-1632047096430-9ae3a7a80836?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHBhcGVyJTIwY29tcGFueXxlbnwwfHwwfHx8Mg%3D%3D"
+            alt="">
     </footer>
     <script>
         /*
@@ -437,12 +468,13 @@
         $(this).addClass('borderR');
         });
         */
-        $('footer img').hide().fadeIn(500,function(){
-            $(this).css("transition","1s");
+        $('footer img').hide().fadeIn(500, function () {
+            $(this).css("transition", "1s");
         });
-        $('footer img').hover(function(){
+        $('footer img').hover(function () {
             $(this).addClass("borderR");
         });
     </script>
 </body>
+
 </html>
