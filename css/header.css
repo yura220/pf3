@@ -1,0 +1,222 @@
+header {
+    /*! padding: 10px 20px; */
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    transition: 1s;
+    /*! background-color: rgba(255,255,255,0.9); */
+    box-sizing: border-box;
+    top: -60px;
+    border-bottom: 1px solid #0002;
+    padding: 0 20px;
+}
+.headerDown{
+    top: 0px;
+}
+header:hover {background-color: white;}
+header nav {
+    display: grid !important;
+    grid-template-columns: 200px 1fr 80px;
+    height: 60px;
+    align-items: center;
+}
+header h1{
+
+}
+header:hover nav h1 a{
+    color: #000;
+    background-image: url(../img/hd_logo_c.png);
+    text-indent: -999px;
+    background-repeat: no-repeat;
+}
+header nav h1 a {
+    font-weight: bold;
+    text-decoration: none;
+    background-image: url(../img/hd_logo_w.png);
+    background-repeat: no-repeat;
+    font-size: 0;
+    height: 32px;
+}
+header .wrapgnb{
+
+    justify-self: center;
+    height: 100%;
+}
+header nav ul.gnb {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    height: 100%;
+}
+
+header nav ul.gnb li {
+}
+
+header nav ul.gnb li a {
+    font-size: 18px;
+    height: 100%;
+    width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+header:hover nav ul.gnb li a{
+    color: #000;
+}
+header nav ul.gnb li a::after{
+    content:"";
+    display: block;
+    width: 0%;
+    height: 3px;
+    background-color: #333;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    transition: 0.5s;
+}
+.border100::after{
+    width: 100% !important;;
+}
+header nav a.lang {
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    justify-self: end;
+    display: flex !important;
+    align-items: center;
+    padding: 10px 0;
+}
+header nav a.lang{justify-content: center;width: 80px;}
+header nav a.lang strong{
+    vertical-align: 2px;
+    margin-left: 3px;
+    line-height: 1;
+}
+header:hover nav strong{
+    color: #000;
+}
+header nav .wlang a:hover {
+}
+header:hover ion-icon{color: #000;}
+header .wlang{
+    position: relative;
+}
+header .wlang .langlist{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px 4px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    top: 35px;
+    opacity: 0;
+    box-sizing: border-box;
+}
+.langlistUp{
+    opacity: 1 !important;
+    top: 30px !important;
+/*     animation-name: up; */
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+@keyframes up{
+    to{
+       top: 30px;
+       opacity: 1;
+    }
+}
+.langlistDown{
+    animation-name: down;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+@keyframes down{
+    to{
+       top: 30px;
+       opacity: 0;
+    }
+}
+header .wlang .langlist li{}
+header .wlang .langlist li a{
+    color: black;
+}
+header button.collapse{
+    position: absolute;
+    right: 30px;
+    top: 100%;
+    width: auto;
+    height: auto;
+    border: none;
+    border-radius: 0 0 7px 7px;
+    background-color: rgba(0, 0, 0,.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    line-height: 1;
+    color: white;
+}
+header button.collapse::after{
+    content:"";
+    display: block;
+    width: 12px;
+    height: 5px;
+    background-image: url(../img/svg/up_arrow_icon.svg);
+    background-repeat: no-repeat;
+    filter: invert(1);
+}
+.turn::after{
+    transform: scaleY(-1);
+}
+header div.subnavi{
+    height: 300px;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 60px;
+}
+header div.subnavi .wrap{
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 200px 1fr 60px;
+    height: 100%;
+    box-sizing: border-box;
+}
+header div.subnavi .wrap ul.flex{
+    justify-self: center;
+    margin: 0 auto;
+    grid-column: 2;
+    height: fit-content;
+    height: 100%;
+}
+header div.subnavi .wrap ul.flex li{
+
+    width: 140px;
+}
+header div.subnavi .wrap ul.flex li ul.sub{
+    transition: .5s;
+}
+header div.subnavi .wrap ul.flex li ul li{
+
+}
+header div.subnavi .wrap ul.flex li a{
+
+    padding-left: 7px;
+    line-height: 2;
+    color: #202020;
+}
+.smdown_icon{
+    font-size: 12px;
+    margin-left: 2px;
+    padding-top: 3px;
+}
